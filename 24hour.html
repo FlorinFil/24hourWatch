@@ -1,0 +1,130 @@
+<style type="text/css">
+body {
+  background-color: #455051;
+}
+
+.clock {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 400px;
+  width: 400px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 24px solid #DF554C; 
+  background-image:
+    radial-gradient(circle at center, #507D9C 8px, transparent 8px),
+    radial-gradient(circle at center, white 50%, transparent 50%, transparent 65%, white 65%),
+    linear-gradient(90deg, transparent 50%, #507D9C 50%, transparent 51%),
+    linear-gradient(0deg, transparent 50%, #507D9C 50%, transparent 51%),
+    linear-gradient(-75deg, transparent 50%, #507D9C 50%, transparent 51%),
+    linear-gradient(-60deg, transparent 50%, #507D9C 50%, transparent 51%),
+    linear-gradient(-45deg, transparent 50%, #507D9C 50%, transparent 51%),
+    linear-gradient(-30deg, transparent 50%, #507D9C 50%, transparent 51%),
+    linear-gradient(-15deg, transparent 50%, #507D9C 50%, transparent 51%),
+    linear-gradient(15deg, transparent 50%, #507D9C 50%, transparent 51%),
+    linear-gradient(30deg, transparent 50%, #507D9C 50%, transparent 51%),
+    linear-gradient(45deg, transparent 50%, #507D9C 50%, transparent 51%),
+    linear-gradient(60deg, transparent 50%, #507D9C 50%, transparent 51%),
+    linear-gradient(75deg, transparent 50%, #507D9C 50%, transparent 51%);
+}
+
+.hour-hand {
+  position: absolute;
+  height: 80px;
+  width: 8px;
+  margin: auto;
+  top: -20%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 4px;
+  background-color: #507D9C;
+  transform-origin: bottom;
+  transform: rotate(0deg);
+}
+
+.minute-hand {
+  position: absolute;
+  height: 120px;
+  width: 8px;
+  margin: auto;
+  top: -30%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 4px;
+  background-color: #507D9C;
+  transform-origin: bottom;
+  transform: rotate(90deg);
+}
+
+.second-hand {
+  position: absolute;
+  height: 120px;
+  width: 2px;
+  margin: auto;
+  top: -30%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 4px;
+  background-color: #507D9C;
+  transform-origin: bottom;
+  transform: rotate(180deg);
+}
+
+
+</style>
+
+<script type="text/javascript">
+//livestreamed at
+// https://youtu.be/kSBT669yLyU
+
+
+function updateClock(hours, minutes, seconds) {
+
+  var hourDegrees = hours * 15;
+  var minuteDegrees = minutes * 6;
+  var secondDegrees = seconds * 6;
+
+  $('.hour-hand').css({
+    'transform': `rotate(${hourDegrees}deg)`
+  });
+
+  $('.minute-hand').css({
+    'transform': `rotate(${minuteDegrees}deg)`
+  });
+
+  $('.second-hand').css({
+    'transform': `rotate(${secondDegrees}deg)`
+  });
+
+}
+
+setClockWithCurrentTime();
+
+function setClockWithCurrentTime() {
+    var date = new Date();
+
+  var hours = ((date.getHours() + 23) % 24 + 1);
+  var minutes = date.getMinutes();
+  var seconds = date.getSeconds();
+
+  updateClock(hours, minutes, seconds);
+}
+
+
+
+setInterval(setClockWithCurrentTime, 1000);
+
+</script>
+
+<div class="clock">
+  <div class="hour-hand"></div>
+  <div class="minute-hand"></div>
+  <div class="second-hand"></div>
+</div>
